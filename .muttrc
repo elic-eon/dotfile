@@ -1,0 +1,9 @@
+reset all
+set editor="vim"
+set allow_8bit
+set allow_ansi
+set locale="zh_TW.UTF-8"
+set ascii_chars=yes
+set charset="utf8"
+set send_charset=big5:gb2312:utf8
+set assumed_charset="big5:utf-8"

@@ -1,0 +1,9 @@
+[user]
+	name = Elic
+	email = elic.space.cs@gmail.com
+[alias]
+	st = status
+  co = commit
+  b = branch
+  ch = checkout
+  lg = log --graph --pretty=oneline --abbrev-commit
