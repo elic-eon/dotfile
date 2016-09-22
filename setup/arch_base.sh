@@ -63,24 +63,6 @@ base() {
 }
 
 base_2() {
-    /bin/bash ./pacaur_install.sh
-
-    echo "Configure pacaur..."
-    vim /etc/xdg/pacaur/config
-
-    echo "Installing infinality bundle + miffe repo keys..."
-    pacman-key --recv-keys 313F5ABD 962DDE58
-    pacman-key --lsign-key 313F5ABD 962DDE58
-
-    echo "Installing pacman.conf..."
-    cp file/pacman.conf /etc/pacman.conf
-
-    echo "Check pacman.conf..." 
-    vim /etc/pacman.conf
-
-    echo "Sync package-database and update..."
-    pacaur -Syyu
-
     echo "arch" > /etc/hostname
     echo "127.0.0.1 arch.domain arch" >> /etc/hosts
 
@@ -102,7 +84,7 @@ base_2() {
     sed -e 's/eth0/$IF/' /etc/netctl/examples/ethernet-dhcp  > /etc/netctl/dhcp
     netctl enable dhcp
 
-    pacaur --needed --noconfirm --noedit -S openssh yaourt
+    pacman --noconfirm -S openssh
     systemctl enable sshd.service
 
     passwd
@@ -110,6 +92,26 @@ base_2() {
     bootctl install
     cp file/loader/arch.conf /boot/loader/entries/arch.conf
     cp file/loader.conf /boot/loader/loader.conf
+}
+
+post() {
+    /bin/bash ./pacaur_install.sh
+
+    echo "Configure pacaur..."
+    vim /etc/xdg/pacaur/config
+
+    echo "Installing infinality bundle + miffe repo keys..."
+    pacman-key --recv-keys 313F5ABD 962DDE58
+    pacman-key --lsign-key 313F5ABD 962DDE58
+
+    echo "Installing pacman.conf..."
+    cp file/pacman.conf /etc/pacman.conf
+
+    echo "Check pacman.conf..." 
+    vim /etc/pacman.conf
+
+    echo "Sync package-database and update..."
+    pacaur -Syyu
 }
 
 ask "base" Y && base
