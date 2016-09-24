@@ -204,6 +204,15 @@ install_misc () {
 }
 
 link_files () {
+    cd ..
+    ln -s Xresources ~/.Xresources
+    ln -s config/ ~/.config
+    ln -s gtkrc-2.0 ~/.config
+    ln -s i3/ ~/.i3
+    ln -s i3blocks.conf ~/.i3blocks.conf
+    ln -s oh-my-zsh/ ~/.oh-my-zsh
+    ln -s zshrc ~/.zshrc
+    cd -
 }
 
 ask "base" Y && base
