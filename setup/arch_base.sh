@@ -140,7 +140,7 @@ install_base() {
       netctl \
       yaourt \
       iotop \
-      tmux \
+      tmux
 }
 
 install_i3() {
