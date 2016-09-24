@@ -81,17 +81,26 @@ base_2() {
     locale-gen
     echo LANG=en_US.UTF-8 > /etc/locale.conf
 
+    IF=ens33
     sed -e 's/eth0/$IF/' /etc/netctl/examples/ethernet-dhcp  > /etc/netctl/dhcp
     netctl enable dhcp
 
-    pacman --noconfirm -S openssh
+    pacman --noconfirm -S openssh zsh sudo
     systemctl enable sshd.service
 
+    vim /etc/mkinitcpio.conf
+    # COMPRESSION="cat"
+    mkinitcpio -P
+
     passwd
+    useradd -m -g users -G wheel -s /bin/zsh ssuyi
+    passwd ssuyi
+
+    visudo
 
     bootctl install
-    cp file/loader/arch.conf /boot/loader/entries/arch.conf
-    cp file/loader.conf /boot/loader/loader.conf
+    cp file/loader/entries/arch.conf /boot/loader/entries/arch.conf
+    cp file/loader/loader.conf /boot/loader/loader.conf
 }
 
 post() {
@@ -117,3 +126,5 @@ post() {
 ask "base" Y && base
 
 ask "base_2" Y && base_2
+
+ask "post" Y && post
