@@ -107,17 +107,23 @@ post() {
     /bin/bash ./pacaur_install.sh
 
     echo "Configure pacaur..."
-    vim /etc/xdg/pacaur/config
+    sudo vim /etc/xdg/pacaur/config
 
     echo "Installing infinality bundle + miffe repo keys..."
-    pacman-key --recv-keys 313F5ABD 962DDE58
-    pacman-key --lsign-key 313F5ABD 962DDE58
+    sudo pacman -S haveged
+    sudo systemctl start haveged
+    sudo systemctl enable haveged
+    sudo pacman-key --init
+    sudo pacman-key --populate archlinux
+    sudo pacman-key --recv-keys 313F5ABD 962DDE58
+    sudo pacman-key --lsign-key 313F5ABD 962DDE58
+    sudo pacman-optimize
 
     echo "Installing pacman.conf..."
-    cp file/pacman.conf /etc/pacman.conf
+    sudo cp file/pacman.conf /etc/pacman.conf
 
     echo "Check pacman.conf..." 
-    vim /etc/pacman.conf
+    sudo vim /etc/pacman.conf
 
     echo "Sync package-database and update..."
     pacaur -Syyu
