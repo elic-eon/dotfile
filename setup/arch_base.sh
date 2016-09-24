@@ -196,9 +196,11 @@ install_i3() {
       cmus \
       mpv \
       alsa-utils \
-      youtube-dl \
+      youtube-dl
 }
+
 ask "base" Y && base
 ask "base_2" Y && base_2
 ask "post" Y && post
 ask "install_base" Y && install_base
+ask "install_i3" Y && install_i3
