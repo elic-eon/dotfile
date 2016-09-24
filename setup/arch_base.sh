@@ -39,12 +39,12 @@ base() {
     sgdisk -n 3:0:+15G -c 3:"root" -t 3:8300 /dev/sda
     sgdisk -n 4:0:0 -c 3:"home" -t 3:8300 /dev/sda
 
-    # sda        8:0    0   20G  0 disk 
-    # ├─sda1     8:1    0  200M  0 part 
-    # ├─sda2     8:2    0    1G  0 part 
-    # ├─sda3     8:3    0   15G  0 part 
-    # ├─sda4     8:4    0 18.8G  0 part 
-    # └─sda128 259:1    0    2M  0 part 
+    # sda        8:0    0   20G  0 disk
+    # ├─sda1     8:1    0  200M  0 part
+    # ├─sda2     8:2    0    1G  0 part
+    # ├─sda3     8:3    0   15G  0 part
+    # ├─sda4     8:4    0 18.8G  0 part
+    # └─sda128 259:1    0    2M  0 part
 
     mkswap /dev/sda2
     swapon /dev/sda2
@@ -113,6 +113,7 @@ post() {
     sudo pacman -S haveged
     sudo systemctl start haveged
     sudo systemctl enable haveged
+    sudo rm -rf /etc/pacman.d/gnupg
     sudo pacman-key --init
     sudo pacman-key --populate archlinux
     sudo pacman-key --recv-keys 313F5ABD 962DDE58
@@ -122,15 +123,82 @@ post() {
     echo "Installing pacman.conf..."
     sudo cp file/pacman.conf /etc/pacman.conf
 
-    echo "Check pacman.conf..." 
+    echo "Check pacman.conf..."
     sudo vim /etc/pacman.conf
 
     echo "Sync package-database and update..."
     pacaur -Syyu
 }
 
+install_base() {
+    pacaur --needed --noconfirm --noedit -S \
+      python \
+      python-pip \
+      rsync \
+      htop \
+      openssh \
+      netctl \
+      yaourt \
+      iotop \
+      tmux \
+}
+
+install_i3() {
+    sleep 2
+    pacaur --needed --noedit -S \
+      xorg-server \
+      xorg-drivers \
+      xorg-apps \
+      xorg-xinit \
+
+    echo "Installing fonts..."
+    sleep 2
+    pacaur --needed --noedit -S \
+       infinality-bundle \
+       ibfonts-meta-base \
+       ttf-noto-fonts-nonlatin-ib \
+       ttf-noto-fonts-cjk-ib \
+       ttf-noto-fonts-emoji-ib \
+       ttf-ms-fonts \
+       ttf-font-awesome \
+       ttf-hack-ibx \
+       ttf-source-code-pro-ibx \
+       powerline-fonts-git
+    sudo fc-presets set
+    sudo cp /usr/share/doc/freetype2-infinality-ultimate/infinality-settings.sh /etc/X11/xinit/xinitrc.d/infinality-settings.sh
+    sudo vim /etc/X11/xinit/xinitrc.d/infinality-settings.sh
+
+    echo "Installing dependencies..."
+    sleep 2
+    pacaur --noconfirm --needed --noedit -S \
+      i3lock-git \
+      i3blocks
+
+    echo "Installing i3 window manager and tools..."
+    sleep 2
+    pacaur --noconfirm --needed --noedit -S \
+      i3-gaps-next-git \
+      rofi \
+      feh \
+      playerctl \
+      imagemagick \
+      compton-git \
+      libmtp \
+      libmap \
+      tmux \
+      youtube-dl \
+      termite-ranger-fix-git \
+      ranger \
+      mediainfo \
+      w3m \
+      poppler \
+      google-chrome \
+      cmus \
+      mpv \
+      alsa-utils \
+      youtube-dl \
+}
 ask "base" Y && base
-
 ask "base_2" Y && base_2
-
 ask "post" Y && post
+ask "install_base" Y && install_base
