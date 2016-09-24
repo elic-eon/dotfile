@@ -184,7 +184,7 @@ install_i3() {
       imagemagick \
       compton-git \
       libmtp \
-      libmap \
+      libmad \
       tmux \
       youtube-dl \
       termite-ranger-fix-git \
