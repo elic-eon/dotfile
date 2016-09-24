@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#------------------------------------------------------------------------
+
+# if no interface is found, use the first device with a global scope
+INTERFACE="${BLOCK_INSTANCE:-wlan0}"
+IPADDR=$(ip addr show $IF | perl -n -e "/$AF ([^\/]+).* scope global/ && print \$1 and exit")
+# get external ip from duch website
+WANIP=$(curl -s http://whatismijnip.nl |cut -d " " -f 5)
+SSID=$(iwgetid $INTERFACE -r)
+QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+
+#------------------------------------------------------------------------
+
+# if the machine has no battery or wireless connection, the corresponding block should not show.
+[[ ! -d /sys/class/net/${INTERFACE}/wireless ]] ||
+    [[ "$(cat /sys/class/net/$INTERFACE/operstate)" = 'down' ]] && exit 0
+
+echo "<span foreground='#87aab5' >$SSID</span>"
+
+#-----------------------------------------------------------------------
+
+# mouse buttons  
+
+case $BLOCK_BUTTON in
+    1) termite --title netinfo --class info --geometry=25x10 -e 'watch -t netinfo' ;; # network info script
+    3) rofi-connm ;; # rofi connection manager
+esac
+

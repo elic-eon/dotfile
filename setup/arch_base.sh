@@ -198,9 +198,18 @@ install_i3() {
       alsa-utils \
       youtube-dl
 }
+install_misc () {
+    pacaur --noconfirm --needed --noedit -S \
+        hime
+}
+
+link_files () {
+}
 
 ask "base" Y && base
 ask "base_2" Y && base_2
 ask "post" Y && post
 ask "install_base" Y && install_base
 ask "install_i3" Y && install_i3
+ask "install_misc" Y && install_misc
+ask "link_files" Y && link_files

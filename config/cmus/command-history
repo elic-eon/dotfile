@@ -1,0 +1,2 @@
+bind common A add
+fset mp3=filename="*.mp3"

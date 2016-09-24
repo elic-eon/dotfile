@@ -1,0 +1,485 @@
+# i3 config file (by leofa)
+# vim: fdm=marker:noai:ts=4:sw=4
+#
+# please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# Mod key {{{
+
+set $mod  Mod4
+set $mod1 Mod1
+set $mod2 shift
+set $mod3 control
+
+# }}}
+
+# Font {{{
+
+font pango: Source Code Pro Medium, FontAwesome Regular 9
+
+# }}}
+
+# I3bar + Colors {{{
+
+bar {
+     status_command i3blocks
+     position top
+     height 21    
+     #separator_symbol "|"
+     workspace_buttons yes
+     strip_workspace_numbers yes
+     bindsym button2 exec i3-msg kill
+     bindsym button4 nop 
+     bindsym button5 nop
+     tray_output eDP1
+     tray_padding 3     
+     colors {    
+         # <bar>
+         separator           #586e75 
+         background          #282a2e
+         statusline          #c5c8c6
+         
+         # <workclass>       <border> <bg>     <text>
+         focused_workspace   #586e75  #4e6269  #ffffff
+         inactive_workspace  #455057  #3b444a  #c7c7c7
+         active_workspace    #282a2e  #373F45  #ffffff
+         urgent_workspace    #282a2e  #943b3a  #ffffff
+         binding_mode        #943b3a  #943b3a  #ffffff
+     }
+}
+
+# <clientclass>          <border> <bg>     <text>   <indicator>
+client.focused           #282a2e  #4e6269  #f9f9f9  #3d9fb8
+client.focused_inactive  #282a2e  #3b444a  #c7c7c7  #205360
+client.unfocused         #282a2e  #373F45  #c7c7c7  #354347
+client.urgent            #282a2e  #ae4544  #f9f9f9  #ae4544
+
+# }}}
+
+# Workspaces {{{
+
+# i3 swag  ┐('～`)┌ 
+#set $WL0 0<span font='Hack 10' font_weight='bold'>i3wm</span>
+#set $WL0 0<span font='10' weight='light' underline='low'>3</span>
+set $WL0 0<span font='9' font_weight='bold' >┐('～`)┌</span>
+
+# names / variables 
+set $WS1 1  
+set $WS2 2  
+set $WS3 3  
+set $WS4 4  
+set $WS5 5  
+set $WS6 6  
+set $WS7 7  
+set $WS8 8  
+set $WS9 9  
+set $WS0 10  
+
+# }}}
+
+# Fixed workspace layout {{{
+
+for_window [workspace="$WS2|$WS3|$WS4"] layout tabbed
+# }}}
+
+# Window title format {{{
+
+for_window [class="(?i)"] title_format "<span weight='ultraheavy' foreground='#282a2e'>   </span><span font='Source Code Pro 9' weight='bold' >%title</span>"
+
+# }}}
+
+# Gaps {{{
+
+smart_gaps on
+gaps outer 10
+gaps inner 10
+
+# }}}
+
+# Borders {{{
+
+bindsym $mod+Shift+t border toggle
+smart_borders on
+new_window pixel 4
+new_float pixel 4
+
+# }}}
+
+# Focus windows {{{
+
+no_focus [window_role="pop-up"]
+focus_on_window_activation focus
+for_window [class="(?i)"] focus
+
+# }}}
+
+# Floating windows {{{
+
+# window rules
+for_window [window_role="task_dialog|bubble|page-info|Preferences"] floating enable
+for_window [title="Steam - Update*|Event Tester|glxgears|Taakbeheer -*"] floating enable
+for_window [instance="gvim|chromium_app_list|radio|gufw.py|Minecraft 1.*|sun-awt-X11-XFramePeer|net-minecraft-bootstrap-Bootstrap|yad|wifi-menu"] floating enable
+for_window [class="(?i)deja-dup|etcher|(?i)gksu-properties|(?i)dconf-editor|mpv|feh|(?i)qtpass|xfontsel|xfd|arandr|(?i)blueberry.py|blueman-manager|blueman-services|lxappearance|pavucontrol|transmission-gtk|xpad|galculator|engrampa|eom|guvcview|mirage|gpicview|simplescreenrecorder|zenity|info|gsimplecal|deluge|(?i)gcr-viewer"] floating enable
+
+# modifier
+floating_modifier $mod 
+
+# window sizes 
+floating_minimum_size -1 x -1
+floating_maximum_size 1340 x 742
+floating_maximum_size 1912 x 1060
+#floating_maximum_size -1 x -1
+
+# }}}
+
+# Resize and position windows {{{
+
+for_window [class="(?i)Gpicview|mirage"]  move position center
+for_window [class="info|(?i)gsimplecal|yadinfo|(?i)pavucontrol|(?i)insync"] move position pointer, move down 21 px
+for_window [instance="radio"]  resize set 355 445; move position pointer, move down 21 px 
+for_window [instance="wifi-menu"]  resize set 425 425; move position pointer, move down 21 px
+
+# }}}
+
+# Scratchpad {{{
+
+bindsym $mod+Shift+plus move scratchpad
+bindsym $mod+plus scratchpad show
+
+# }}}
+
+# Sticky windows {{{
+
+bindsym $mod+Shift+s sticky toggle
+for_window [class="info|Mate-color-select|gcolor2|timesup|QtPass|GtkFileChooserDialog"] sticky enable
+for_window [instance="file_progress"]  sticky enable
+
+# }}}
+
+# Window control {{{
+
+for_window [instance="scratch_termite"] move scratchpad, move position 686 390, move scratchpad, scratchpad show
+for_window [instance="scows"] floating enable, resize set 685 450, move position center
+for_window [instance="crx_fahmaaghhglfmonjliepjlchgpgfmobi"] sticky enable, floating enable, move position pointer # Play Music Player 
+for_window [instance="transmission"] floating enable, resize set 824 496, move position pointer, move down 21 px 
+
+# }}}
+
+# Picture in picture mode {{{
+bindsym $mod+y fullscreen disable, floating enable, resize set 422 240, sticky enable, move position 925 510 
+
+# }}}
+
+# Move windows to workspaces {{{
+
+assign [instance="scows"] $WL0
+assign [instance="urxvt|ws1_termite"] $WS1
+assign [window_role="browser"] $WS2
+assign [class="(?i)qutebrowser"] $WS2
+assign [instance="bookmarks|file_properties|property_browser|caja"] $WS3
+assign [instance="libreoffice*|abiword|gucharmap|mutt|geary|xournal"] $WS4
+assign [instance="atom|subl3|sublime_text|geany"] $WS5
+assign [instance="cmus_termite|lollypop|audacious|quodlibet|banshee|deadbeef|google-musicmanager|gmusicbrowser|spotify|audacious|deadbeef|Plex|Kodi"] $WS6
+assign [instance="cheese|guvcview|(?i)pinta|gimp|inkscape|krita|simple-scan|gthumb"] $WS7
+assign [class="(?i)Steam"] 7  
+assign [instance="sol|frogatto|sun-awt-X11-XFramePeer|net-minecraft-bootstrap-Bootstrap|supertuxkart|gnome-chess"] $WS8
+assign [instance="remmina|htop|(?i)gnome-boxes|virt-manager|log_term|glances_term|htop_term|pacaur|gparted|gnome-disks|gitg|seahorse"] $WS9
+assign [class="xfreerdp"] $WS7
+
+# chromium-apps
+assign [instance="crx_apdfllckaahabafndbhieahigkjlhalf"] "$WS4" # Drive
+assign [instance="crx_pkclgpgponpjmpfokoepglboejdobkpl"] "$WS4" # Inbox
+assign [instance="crx_pjkljhegncpnkpknbcohdijeoejaedia"] "$WS4" # Gmail
+assign [instance="crx_mmimngoggfoobjdlefbcabngfnmieonb"] "$WS4" # Play Books
+assign [instance="crx_lneaknkopdijkpnocmklfnjbeapigfbh"] "$WS4" # Maps
+assign [instance="crx_hmjkmjkepdijhoojdojkdfohbdgmmhki"] "$WS4" # Keep
+assign [instance="crx_ejjicmeblgpmajnghnpcppodonldlgfn"] "$WS4" # Agenda
+assign [instance="crx_aohghmighlieiainnegkcijnfilokake"] "$WS4" # Documents
+assign [instance="crx_ohpkjjfnffomjmcjinebceemmnfeadhk"] "$WS6" # Play Music
+assign [instance="crx_bjnooceohmkfhceebgbalehiggmeeeem"] "$WS6" # Emby
+assign [instance="crx_fpniocchabmgenibceglhnfeimmdhdfm"] "$WS6" # Plex
+assign [instance="crx_cogncpmnihfpagflekafgfhbjahhjgee"] "$WS6" # Soundcloud 
+assign [instance="crx_phcdhpbhckghdfliofkjhinomlcgkhnn"] "$WS6" # YouTube TV 
+assign [instance="crx_hjaaapkoiljkjpgpfgckfielajkdjhik"] "$WS6" # Netflix 
+assign [instance="crx_blckliiiahkijfikcfmbncibcefakemp"] "$WS7" # Foto's
+assign [instance="crx_*"] "$WS2" # everything else
+
+# }}}
+
+# Focus urgent {{{
+
+bindsym $mod+u [urgent=latest] focus
+force_display_urgency_hint 500 ms
+
+# }}}
+
+# Bar modus {{{
+bindsym $mod+Shift+h exec toggle-bar 
+#script to toggle bar invisible/dock
+
+# }}}
+
+# Cycle through active workspaces {{{
+bindsym $mod+period workspace next
+bindsym $mod+comma workspace prev
+workspace_auto_back_and_forth yes
+
+# }}}
+
+# Brightness control {{{
+# xbacklight doesn't work with modesetting use brightness script
+#bindsym --release XF86MonBrightnessUp    exec sudo brightness up
+#bindsym --release XF86MonBrightnessDown  exec sudo brightness down
+#bindsym $mod+XF86MonBrightnessUp         exec sudo brightness max
+#bindsym $mod+XF86MonBrightnessDown       exec sudo brightness min
+
+#bindsym --release XF86MonBrightnessUp    exec xbacklight -inc 5
+#bindsym --release XF86MonBrightnessDown  exec xbacklight -dec 5
+#bindsym $mod+XF86MonBrightnessUp         exec xbacklight -set 100
+#bindsym $mod+XF86MonBrightnessDown       exec xbacklight -set 0
+
+#bindsym $mod+Shift+XF86MonBrightnessDown exec toggle-dpms
+#bindsym $mod+Shift+XF86MonBrightnessUp   exec toggle-red
+
+# }}}
+
+# Sound control {{{
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute && pkill -SIGRTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute && pkill -SIGRTMIN+10 i3blocks
+bindsym XF86AudioMute        exec amixer -q set Master mute && pkill -SIGRTMIN+10 i3blocks
+bindsym $mod+XF86AudioMute   exec pavucontrol
+
+# }}}
+
+# Mediaplayer control {{{
+
+bindsym $mod1+Right exec cmus-remote -n && playerctl next
+bindsym $mod1+Left  exec cmus-remote -p && playerctl previous
+bindsym $mod1+Up    exec cmus-remote -s && playerctl stop
+bindsym $mod1+Down  exec cmus-remote -u && playerctl play-pause
+
+bindsym $mod+XF86AudioLowerVolume       exec termite --title "C* Music Player" --name "cmus_termite" -e cmus 
+bindsym $mod+XF86AudioRaiseVolume       exec termite --title "Radio" --name "radio" -e "sh -c 'radio'"
+bindsym $mod+Shift+XF86AudioRaiseVolume exec qutebrowser --backend webengine https://play.google.com/music
+
+# }}}
+
+# Take screenshots {{{
+bindsym Print exec dscrot 
+bindsym $mod+Print exec wscrot
+
+# }}}
+
+# Kill focused window {{{
+bindsym $mod+q kill
+bindsym --release $mod+x exec xkill
+
+# }}}
+
+# Mouse support  {{{
+focus_follows_mouse no
+bindsym --whole-window $mod1+button2 kill
+bindsym --whole-window $mod1+button3 floating toggle
+
+# }}}
+
+# Change focus {{{
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# }}}
+
+# Move focused window {{{
+bindsym $mod+Shift+j move left 25px
+bindsym $mod+Shift+k move down 25px
+bindsym $mod+Shift+l move up 25px
+bindsym $mod+Shift+semicolon move right 25px
+
+bindsym $mod+Shift+Left move left 25px
+bindsym $mod+Shift+Down move down 25px
+bindsym $mod+Shift+Up move up 25px
+bindsym $mod+Shift+Right move right 25px
+
+# }}}
+
+# Container split orientation {{{
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# }}}
+
+# Fullscreen mode {{{
+bindsym $mod+F11 fullscreen
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+f fullscreen global
+popup_during_fullscreen smart
+
+# }}}
+
+# Change container layout (stacked, tabbed, toggle split) {{{
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# }}}
+
+# Toggle tiling / floating {{{
+bindsym $mod+Shift+space floating toggle
+
+# }}}
+
+# Focus {{{
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Focus the parent container
+bindsym $mod+Shift+period focus parent
+
+# Focus the child container 
+bindsym $mod+Shift+comma focus child
+
+# }}}
+
+# Switch to workspace {{{
+bindsym $mod+grave workspace $WL0
+bindsym $mod+1 workspace $WS1
+bindsym $mod+2 workspace $WS2
+bindsym $mod+3 workspace $WS3
+bindsym $mod+4 workspace $WS4
+bindsym $mod+5 workspace $WS5
+bindsym $mod+6 workspace $WS6
+bindsym $mod+7 workspace $WS7
+bindsym $mod+8 workspace $WS8
+bindsym $mod+9 workspace $WS9
+bindsym $mod+0 workspace $WS0
+
+# }}}
+
+# Move focused container to workspace {{{
+bindsym $mod+Shift+grave move container to workspace $WL0
+bindsym $mod+Shift+1 move container to workspace $WS1
+bindsym $mod+Shift+2 move container to workspace $WS2
+bindsym $mod+Shift+3 move container to workspace $WS3
+bindsym $mod+Shift+4 move container to workspace $WS4
+bindsym $mod+Shift+5 move container to workspace $WS5
+bindsym $mod+Shift+6 move container to workspace $WS6
+bindsym $mod+Shift+7 move container to workspace $WS7
+bindsym $mod+Shift+8 move container to workspace $WS8
+bindsym $mod+Shift+9 move container to workspace $WS9
+bindsym $mod+Shift+0 move container to workspace $WS0
+
+# }}}
+
+# Multimonitor support {{{
+workspace "$WL0" output HDMI1
+workspace "$WS1" output eDP1
+workspace "$WS2" output eDP1
+workspace "$WS3" output eDP1
+workspace "$WS4" output eDP1
+workspace "$WS5" output eDP1
+workspace "$WS6" output HDMI1
+workspace "$WS7" output HDMI1
+workspace "$WS8" output HDMI1
+workspace "$WS9" output HDMI1
+workspace "$WS0" output HDMI1
+
+# }}}
+
+# Resize window {{{
+bindsym $mod+r mode "  "
+mode "  " {
+     bindsym j resize shrink width 10 px or 10 ppt
+     bindsym k resize grow height 10 px or 10 ppt
+     bindsym l resize shrink height 10 px or 10 ppt
+     bindsym semicolon resize grow width 10 px or 10 ppt
+     bindsym Left resize shrink width 10 px or 10 ppt
+     bindsym Down resize grow height 10 px or 10 ppt 
+     bindsym Up resize shrink height 10 px or 10 ppt
+     bindsym Right resize grow width 10 px or 10 ppt
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+}
+
+# }}}
+
+# Keyboard bindings {{{
+
+# terminal
+bindsym $mod+Return exec termite --name 'ws1_termite'
+#bindsym $mod+Return exec urxvt -name 'ws1_termite'
+bindsym $mod+backslash exec i3-sensible-terminal
+
+# search files/ websearch
+bindsym $mod1+space exec rofi-find
+bindsym $mod+slash exec rofi-s
+
+# webbrowser
+bindsym $mod+Shift+slash exec rofi-ssb
+bindsym $mod+c exec google-chrome-stable
+bindsym $mod+n exec qutebrowser
+bindsym $mod+Shift+n exec qutebrowser ~/docs/bookmarks_18-03-16.html
+bindsym $mod+i exec google-chrome-stable --incognito
+
+# filemanager
+bindsym $mod+b exec caja ~/
+bindsym $mod+Shift+b exec rofi-fb
+
+# mail
+bindsym $mod+m exec soc #script to start rtv turses & mutt 
+#termite --title "Mutt E-Mail Client" --name "mutt" -e "mutt"
+bindsym $mod+Shift+m exec qutebrowser --backend webengine https://mail.google.com
+
+# text-editor
+bindsym $mod+g exec gvim -geom=120x42+200+23
+
+# launcher
+bindsym $mod+d exec rofi-apps
+bindsym $mod+Shift+a exec rofi-gksu
+bindsym $mod+a exec rofi -show run
+
+# manage windows
+bindsym $mod+Tab exec rofi -width 45 -show window
+bindsym $mod1+Tab exec rofi-getwindow
+bindsym $mod+Shift+Return exec termite --name "scratch_termite"
+
+# rofi connection manager 
+bindsym $mod+XF86Reload exec rofi-connm
+bindsym $mod+Shift+XF86Reload exec notify-send '  :: restarting wifi.. ::' && sudo systemctl restart netctl-auto@wlp1s0.service 
+
+# password manager
+bindsym $mod+p exec rofi-passmenu --notify 
+bindsym $mod+Shift+p exec qtpass
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace
+bindsym $mod+Shift+r restart
+
+# exit i3
+bindsym $mod+Shift+e exec rofi-exit
+
+# lockscreen
+set $Locker ilockit
+bindsym $mod+Escape exec $Locker
+
+# logout dialog
+bindsym XF86PowerOff exec rofi-logout
+
+# quick suspend
+bindsym $mod+XF86PowerOff exec systemctl suspend
+
+# }}}
+
+# Autostart applications {{{
+
+#exec sleep 2 && termite --name "scows" --title="Fortune Cookie (^-^)/" -e "scows wisdom linux cookie linuxcookie"
+exec i3-msg workspace 1 " " #fix workspace 1 name not applied at login (race condition?)
+
+# }}}
