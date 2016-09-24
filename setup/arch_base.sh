@@ -50,10 +50,10 @@ base() {
     swapon /dev/sda2
     mkfs.fat -F32 /dev/sda1
     mkfs.ext4 /dev/sda3
-    mkfs.xfs /dev/sda3
+    mkfs.xfs /dev/sda4
     mount -t ext4 /dev/sda3 /mnt
     mkdir /mnt/boot && mount /dev/sda1 /mnt/boot
-    mkdir /mnt/home && mount /dev/sda1 /mnt/home
+    mkdir /mnt/home && mount /dev/sda4 /mnt/home
 
     sed -i '1s#^#Server = http://archlinux.cs.nctu.edu.tw/$repo/os/$arch\n#' \
         /etc/pacman.d/mirrorlist
