@@ -205,13 +205,13 @@ install_misc () {
 
 link_files () {
     cd ..
-    ln -s Xresources ~/.Xresources
-    ln -s config/ ~/.config
-    ln -s gtkrc-2.0 ~/.config
-    ln -s i3/ ~/.i3
-    ln -s i3blocks.conf ~/.i3blocks.conf
-    ln -s oh-my-zsh/ ~/.oh-my-zsh
-    ln -s zshrc ~/.zshrc
+    ln -s ~/dotfile/Xresources ~/.Xresources
+    ln -s ~/dotfile/config/ ~/.config
+    ln -s ~/dotfile/gtkrc-2.0 ~/.config
+    ln -s ~/dotfile/i3/ ~/.i3
+    ln -s ~/dotfile/i3blocks.conf ~/.i3blocks.conf
+    ln -s ~/dotfile/oh-my-zsh/ ~/.oh-my-zsh
+    ln -s ~/dotfile/zshrc ~/.zshrc
     cd -
 }
 
