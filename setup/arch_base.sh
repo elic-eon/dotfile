@@ -144,6 +144,7 @@ install_base() {
       netctl \
       yaourt \
       iotop \
+      ccze \
       tmux
 }
 
@@ -191,6 +192,7 @@ install_i3() {
       libmtp \
       libmad \
       tmux \
+      glances \
       unclutter-xfixes-git \
       youtube-dl \
       termite-ranger-fix-git \
