@@ -102,6 +102,12 @@ base_2() {
     cp file/loader/entries/arch.conf /boot/loader/entries/arch.conf
     cp file/loader/loader.conf /boot/loader/loader.conf
 }
+vmware() {
+    sudo pacman -S haveged
+    sudo systemctl start haveged
+    sudo systemctl enable haveged
+    sudo cp file/10-monitor.conf /etc/X11/xorg.conf.d/
+}
 
 post() {
     /bin/bash ./pacaur_install.sh
@@ -110,9 +116,7 @@ post() {
     sudo vim /etc/xdg/pacaur/config
 
     echo "Installing infinality bundle + miffe repo keys..."
-    sudo pacman -S haveged
-    sudo systemctl start haveged
-    sudo systemctl enable haveged
+    ask "vmware" Y && vmware
     sudo rm -rf /etc/pacman.d/gnupg
     sudo pacman-key --init
     sudo pacman-key --populate archlinux
@@ -209,6 +213,7 @@ install_misc () {
 link_files () {
     cd ..
     ln -s ~/dotfile/Xresources ~/.Xresources
+    ln -s ~/dotfile/xinitrc ~/.xinitrc
     ln -s ~/dotfile/config/ ~/.config
     ln -s ~/dotfile/gtkrc-2.0 ~/.config
     ln -s ~/dotfile/i3/ ~/.i3
