@@ -78,7 +78,7 @@ set $WS0 10 
 
 # Fixed workspace layout {{{
 
-for_window [workspace="$WS2|$WS3|$WS4"] layout tabbed
+for_window [workspace="$WS2"] layout tabbed
 # }}}
 
 # Window title format {{{
@@ -125,7 +125,7 @@ floating_modifier $mod
 
 # window sizes 
 floating_minimum_size -1 x -1
-floating_maximum_size 1340 x 742
+#floating_maximum_size 1340 x 742
 floating_maximum_size 1912 x 1060
 #floating_maximum_size -1 x -1
 
@@ -159,7 +159,6 @@ for_window [instance="file_progress"]  sticky enable
 
 for_window [instance="scratch_termite"] move scratchpad, move position 686 390, move scratchpad, scratchpad show
 for_window [instance="scows"] floating enable, resize set 685 450, move position center
-for_window [instance="crx_fahmaaghhglfmonjliepjlchgpgfmobi"] sticky enable, floating enable, move position pointer # Play Music Player 
 for_window [instance="transmission"] floating enable, resize set 824 496, move position pointer, move down 21 px 
 
 # }}}
