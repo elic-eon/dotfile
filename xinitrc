@@ -69,7 +69,7 @@ start-pulseaudio-x11 &
 #xdg-user-dirs-gtk-update &
 #/usr/lib/lxpolkit/lxpolkit &
 #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-feh --bg-fill ~/wallpaper/1446801110986.jpg &
+feh --bg-fill ~/dotfile/wallhaven-2042.jpg &
 #setroot -fw ~/dotfiles/resources/blue-ridge-mountain.jpg &
 wallch &
 compton -b --config ~/.config/compton.conf &
