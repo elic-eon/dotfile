@@ -182,13 +182,16 @@ install_i3() {
       feh \
       playerctl \
       imagemagick \
+      dunst \
       compton-git \
       libmtp \
       libmad \
       tmux \
+      unclutter-xfixes-git \
       youtube-dl \
       termite-ranger-fix-git \
       ranger \
+      clipit \
       mediainfo \
       w3m \
       poppler \
