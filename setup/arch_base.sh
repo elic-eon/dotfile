@@ -193,6 +193,7 @@ install_i3() {
       libmad \
       tmux \
       glances \
+      scrot \
       unclutter-xfixes-git \
       youtube-dl \
       termite-ranger-fix-git \
@@ -202,9 +203,12 @@ install_i3() {
       w3m \
       poppler \
       google-chrome \
+      evince \
       cmus \
       mpv \
+      pulseaudio-alsa \
       alsa-utils \
+      pavucontrol \
       youtube-dl
 }
 install_misc () {
@@ -217,7 +221,7 @@ link_files () {
     ln -s ~/dotfile/Xresources ~/.Xresources
     ln -s ~/dotfile/xinitrc ~/.xinitrc
     ln -s ~/dotfile/config/ ~/.config
-    ln -s ~/dotfile/gtkrc-2.0 ~/.config
+    ln -s ~/dotfile/gtkrc-2.0 ~/.gtkrc-2.0
     ln -s ~/dotfile/i3/ ~/.i3
     ln -s ~/dotfile/i3blocks.conf ~/.i3blocks.conf
     ln -s ~/dotfile/oh-my-zsh/ ~/.oh-my-zsh
