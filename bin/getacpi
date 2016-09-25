@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+# Battery info using acpi, and termite
+
+termite --title "acpi" --class "info" --geometry=48x2 -e "watch -t acpi -tba"
+

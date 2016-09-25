@@ -1,0 +1,4 @@
+#!/bin/bash
+# display warning image and alert
+
+i3-msg exec mpv --quiet --volume 65 /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga && feh --title Warning /home/$USER/.config/timer/timesup.png 
