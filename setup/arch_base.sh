@@ -209,6 +209,8 @@ install_i3() {
       pulseaudio-alsa \
       alsa-utils \
       pavucontrol \
+      lm_sensors \
+      bc \
       youtube-dl
 }
 install_misc () {
