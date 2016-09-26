@@ -16,6 +16,6 @@ case $CMD in
         kill -15 $WM_PID
         ;;
     'lock')
-        ilockit
+        i3lock-fancy
         ;;
 esac
