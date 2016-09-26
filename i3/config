@@ -251,10 +251,10 @@ bindsym $mod+XF86AudioMute   exec pavucontrol
 
 # Mediaplayer control {{{
 
-bindsym $mod1+Right exec cmus-remote -n && playerctl next
-bindsym $mod1+Left  exec cmus-remote -p && playerctl previous
-bindsym $mod1+Up    exec cmus-remote -s && playerctl stop
-bindsym $mod1+Down  exec cmus-remote -u && playerctl play-pause
+bindsym $mod1+Right exec cmus-remote -n || playerctl next
+bindsym $mod1+Left  exec cmus-remote -p || playerctl previous
+bindsym $mod1+Up    exec cmus-remote -s || playerctl stop
+bindsym $mod1+Down  exec cmus-remote -u || playerctl play-pause
 
 bindsym $mod+XF86AudioLowerVolume       exec termite --title "C* Music Player" --name "cmus_termite" -e cmus 
 bindsym $mod+XF86AudioRaiseVolume       exec termite --title "Radio" --name "radio" -e "sh -c 'radio'"
@@ -465,8 +465,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec rofi-exit
 
 # lockscreen
-set $Locker ilockit
-bindsym $mod+Escape exec $Locker
+bindsym $mod+Escape exec i3lock-fancy
 
 # logout dialog
 bindsym XF86PowerOff exec rofi-logout
