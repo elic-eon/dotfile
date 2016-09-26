@@ -438,7 +438,7 @@ bindsym $mod+Shift+m exec qutebrowser --backend webengine https://mail.google.co
 bindsym $mod+g exec gvim -geom=120x42+200+23
 
 # launcher
-bindsym $mod+d exec rofi-apps
+bindsym $mod+d exec rofi-fullscreen-apps
 bindsym $mod+Shift+a exec rofi-gksu
 bindsym $mod+a exec rofi -show run
 
