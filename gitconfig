@@ -1,11 +1,14 @@
 [user]
-  name = ssuyi
-  email = ssuyi@cs.nctu.edu.tw
+	name = ssuyi
+	email = elic.space.cs@gmail.com
 [alias]
-  st = status
-  co = commit
-  b = branch
-  ch = checkout
-  lg = log --graph --pretty=oneline --abbrev-commit
-[core]
-  editor = /usr/bin/vim
+	st = status
+	co = commit
+	b = branch
+	ch = checkout
+	lg = log --graph --pretty=oneline --abbrev-commit
+
+[push]
+	default = simple
+[http]
+	sslVerify = false
