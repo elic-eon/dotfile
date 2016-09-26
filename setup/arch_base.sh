@@ -183,6 +183,7 @@ install_i3() {
     sleep 2
     pacaur --noconfirm --needed --noedit -S \
       i3-gaps-next-git \
+      i3lock-fancy-git \
       rofi \
       feh \
       playerctl \
@@ -211,6 +212,14 @@ install_i3() {
       pavucontrol \
       lm_sensors \
       bc \
+      numix-circle-icon-theme-git \
+      lxappearance \
+      git-theme-arc \
+      tcl \
+      aspell-en \
+      ruby \
+      lua \
+      weechat \
       youtube-dl
 }
 install_misc () {
