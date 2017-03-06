@@ -1,0 +1,18 @@
+config/Code/
+config/Electron/
+config/Messenger for Desktop/
+config/Skype/
+config/Trolltech.conf
+config/autostart/
+config/caja/
+config/clipit/
+config/dconf/
+config/gconf/
+config/google-chrome/
+config/gtk-2.0/
+config/gtk-3.0/
+config/htop/
+config/menus/
+config/pavucontrol.ini
+config/pulse/
+config/spotify/
