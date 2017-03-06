@@ -1,5 +1,5 @@
 [global]
-    font = "Hack 10"
+    font = "AnonymicePowerline Nerd Font 10"
     allow_markup = yes
     format = "<b>%s %p</b>\n%b"
     sort = yes
@@ -11,10 +11,10 @@
     alignment = center
     show_age_threshold = 60
     sticky_history = yes
-    follow = mouse  
+    follow = mouse
     word_wrap = yes
     show_indicators = yes
-    line_height = 0   
+    line_height = 0
     separator_height = 2
     padding = 10
     horizontal_padding = 10
@@ -23,10 +23,10 @@
     shrink = yes
     startup_notification = false
     dmenu = "/usr/bin/dmenu -p dunst: -nb #FFFFFF -nf #000000 -sb #94DBFF -sf #000000"
-    browser = /usr/bin/chromium
+    browser = /bin/google-chrome-stable
     icon_position = off
     icon_folders = /usr/share/icons/Flattr/16x16/status/:/usr/share/icons/Flattr/16x16/devices/
-    
+
 [frame]
     width = 4
     color = "#455057"
@@ -66,7 +66,7 @@
 # The script will be called as follows:
 #   script appname summary body icon urgency
 # where urgency can be "LOW", "NORMAL" or "CRITICAL".
-# 
+#
 # NOTE: if you don't want a notification to be displayed, set the format
 # to "".
 # NOTE: It might be helpful to run dunst -print in a terminal in order
