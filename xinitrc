@@ -44,11 +44,11 @@ xset b off
 xset r rate 200 30
 
 #gnome-keyring
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-export SSH_AUTH_SOCK
+#eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+#export SSH_AUTH_SOCK
 #for uniform qt theme and icons
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export BROWSER="/opt/google/chrome/chrome"
+#export QT_QPA_PLATFORMTHEME="qt5ct"
+export BROWSER="/bin/google-chrome-stable"
 
 #------------------------------------------------
 # autostart programs + scripts
@@ -69,12 +69,12 @@ start-pulseaudio-x11 &
 #xdg-user-dirs-gtk-update &
 #/usr/lib/lxpolkit/lxpolkit &
 #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-feh --bg-fill ~/dotfile/wallhaven-2042.jpg &
+feh --bg-fill ~/.config/default.jpg &
 #setroot -fw ~/dotfiles/resources/blue-ridge-mountain.jpg &
-wallch &
+#wallch &
 compton -b --config ~/.config/compton.conf &
 #lightsOn 120 &
-redshift &
+#redshift &
 #xbacklight -set 75 &
 (sleep 3s && clipit -dn) &
 (sleep 10s && unclutter -b --timeout 30) &
