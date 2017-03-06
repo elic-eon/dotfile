@@ -16,3 +16,4 @@ config/menus/
 config/pavucontrol.ini
 config/pulse/
 config/spotify/
+config/nvim/
