@@ -3,7 +3,7 @@
 used=`free -h | sed -n '2p' | awk -F' ' '{print $3}'`
 total=`free -h | sed -n '2p' | awk -F' ' '{print $2}'`
 
-echo "<span font='8' font_weight='ultralight' foreground='#B294BB' > </span>$used"
+echo "<span font='9' font_weight='ultralight' foreground='#B294BB' > </span>$used"
 #echo "$used/$total"
 
 case $BLOCK_BUTTON in
